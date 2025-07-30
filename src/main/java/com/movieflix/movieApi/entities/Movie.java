@@ -2,11 +2,7 @@ package com.movieflix.movieApi.entities;
 
 import java.util.Set;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,8 +14,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Movie {
     @Id
-    @GeneratedValue
-            (strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer movieId;
 
     @Column(nullable = false, length = 200)
@@ -34,8 +29,16 @@ public class Movie {
     @NotBlank(message="Please provide movie's studio")
     private String studio;
 
+    @ElementCollection
+    @CollectionTable(name="movie_cast")
     private Set<String> movieCast;
+
+    @Column(nullable = false)
+    @NotBlank(message = "Please provide movie's release year!")
     private Integer releaseYear;
+
+    @Column(nullable = false)
+    @NotBlank(message = "Please provide movie's poster!")
     private String poster;
 
 }
