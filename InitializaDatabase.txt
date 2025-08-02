@@ -1,0 +1,16 @@
+postgres@user:~$ psql
+psql (16.9 (Ubuntu 16.9-0ubuntu0.24.04.1))
+Type "help" for help.
+
+postgres=# CREATE USER movieuser WITH PASSWORD '1619';
+CREATE DATABASE moviedb OWNER movieuser;
+ERROR:  role "movieuser" already exists
+ERROR:  database "moviedb" already exists
+postgres=# GRANT ALL PRIVILEGES ON DATABASE moviedb TO movieuser;
+GRANT USAGE ON SCHEMA public TO movieuser;
+GRANT CREATE ON SCHEMA public TO movieuser;
+GRANT
+GRANT
+GRANT
+postgres=# 
+

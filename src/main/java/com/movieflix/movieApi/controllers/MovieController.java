@@ -30,7 +30,7 @@ public class MovieController {
     return new ResponseEntity<>(movieService.addMovie(dto, file), HttpStatus.CREATED);
     }
 
-    @GetMapping("/${movieId}")
+    @GetMapping("/{movieId}")
     public ResponseEntity<MovieDto> getMovieHandler(@PathVariable Integer movieId){
         return ResponseEntity.ok(movieService.getMovie(movieId));
     }
