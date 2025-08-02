@@ -27,7 +27,7 @@ public class FileServiceImpl implements FileService {
         }
 
         //copy the file or upload the file to path
-        Files.copy(file.getInputStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(file.getInputStream(), Paths.get(filePath));
 
         return fileName;
 
