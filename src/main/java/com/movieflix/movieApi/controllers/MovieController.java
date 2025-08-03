@@ -3,6 +3,7 @@ package com.movieflix.movieApi.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movieflix.movieApi.dto.MovieDto;
+import com.movieflix.movieApi.exceptions.EmptyFileException;
 import com.movieflix.movieApi.service.MovieService;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,10 @@ public class MovieController {
     @PostMapping("/add-movie")
     public ResponseEntity<MovieDto> addMovieHandler(@RequestPart MultipartFile file,
                                                     @RequestPart String movieDto) throws IOException {
+        if(file.isEmpty()){
+            throw new EmptyFileException("File is empty! Please send another file!");
+        }
+
     MovieDto dto = convertToMovieDto(movieDto);
     return new ResponseEntity<>(movieService.addMovie(dto, file), HttpStatus.CREATED);
     }
